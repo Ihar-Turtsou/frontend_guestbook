@@ -6,6 +6,8 @@ const MessageForm = ({ onSubmit, onError, onSuccess, onServerError }) => {
     const [name, setName] = useState('');
     const [text, setText] = useState('');
 
+    const apiUrl = process.env.REACT_APP_API_URL
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -26,7 +28,7 @@ const MessageForm = ({ onSubmit, onError, onSuccess, onServerError }) => {
         };
 
         try {
-            const response = await fetch("http://localhost:4000/messages", requestOptions);
+            const response = await fetch(apiUrl, requestOptions);
             if (response.ok) {
                 const newMessage = await response.json();
                 onSubmit(newMessage.message);

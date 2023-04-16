@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
+
 import Notification from './Notification.js';
 import MessageForm from './MessageForm.js';
 import MessageItem from './MessageItem.js';
 import { Box, List} from '@mui/material';
 
 const MessageList = () => {
-
+    
     const [messages, setMessages] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
     const [serverError, setServerError] = useState(null);
+    
+    const apiUrl = process.env.REACT_APP_API_URL
 
     useEffect(() => {
         const fetchMessages = async () => {
             try {
-                const response = await fetch('http://localhost:4000/messages')
+                const response = await fetch(apiUrl)
 
                 if (!response.ok) {
                     const errorData = await response.json();
