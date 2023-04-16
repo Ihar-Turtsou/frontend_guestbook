@@ -12,7 +12,7 @@ const MessageList = () => {
     const [error, setError] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
     const [serverError, setServerError] = useState(null);
-    
+
     const apiUrl = process.env.REACT_APP_API_URL
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const MessageList = () => {
             }
         }
         fetchMessages()
-    }, []);
+    }, [apiUrl]);
 
     useEffect(() => {
         if (error || successMessage || serverError) {
