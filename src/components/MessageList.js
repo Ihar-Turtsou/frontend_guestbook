@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import Notification from './Notification.js';
 import MessageForm from './MessageForm.js';
 import MessageItem from './MessageItem.js';
@@ -36,19 +35,13 @@ const MessageList = () => {
         }
         fetchMessages()
     }, [apiUrl]);
+  
+    const handleInputChange = () => {
+        setError(null);
+        setSuccessMessage(null);
+        setServerError(null);
+      };
 
-    useEffect(() => {
-        if (error || successMessage || serverError) {
-            const timer = setTimeout(() => {
-                setError(null);
-                setSuccessMessage(null);
-                setServerError(null);
-            }, 3000);
-            return () => {
-                clearTimeout(timer);
-            };
-        }
-    }, [error, successMessage, serverError]);
 
     if (isLoading) {
         return <div>Loading...</div>
@@ -61,6 +54,7 @@ const MessageList = () => {
                 onError={setError} 
                 onSuccess={setSuccessMessage} 
                 onServerError={setServerError} 
+                onInputChange={handleInputChange}
                 />
             </Box>
             <Box sx={{ position: 'relative', marginTop: '20px' }}>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { isValidName, containsHyperlink } from './ValidationForm.js'
 import { Button, TextField, Box } from '@mui/material';
 
-const MessageForm = ({ onSubmit, onError, onSuccess, onServerError }) => {
+const MessageForm = ({ onSubmit, onError, onSuccess, onServerError, onInputChange }) => {
     const [name, setName] = useState('');
     const [text, setText] = useState('');
 
@@ -59,8 +59,12 @@ const MessageForm = ({ onSubmit, onError, onSuccess, onServerError }) => {
                     variant="outlined"
                     value={name}
                     inputProps={{ style: { whiteSpace: 'pre-wrap' } }}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => {
+                        setName(e.target.value);
+                        onInputChange()
+                    }}
                     onInput={() => onError(null)}
+
                     sx={{
                         '@media (min-width: 1000px)': {
                             width: '50%',
@@ -77,7 +81,10 @@ const MessageForm = ({ onSubmit, onError, onSuccess, onServerError }) => {
                     variant="outlined"
                     value={text}
                     inputProps={{ style: { whiteSpace: 'pre-wrap' } }}
-                    onChange={(e) => setText(e.target.value)}
+                    onChange={(e) => {
+                        setText(e.target.value);
+                        onInputChange()
+                    }}
                     onKeyDown={handleKeyDown}
                     onInput={() => onError(null)}
                     sx={{
