@@ -3,8 +3,10 @@ import { format } from 'date-fns';
 import { ListItem, ListItemText, Typography, Card, CardContent, CardHeader } from '@mui/material';
 
 const MessageItem = ({ message }) => {
-    
-    const formattedText = message.text.split('\n').map((line, index) => (<React.Fragment key={index}>
+   
+    const messageTextTrim = message.text.trim()
+  
+    const formattedText = messageTextTrim.split('\n').map((line, index) => (<React.Fragment key={index}>
         {line}
         <br />
     </React.Fragment>))
