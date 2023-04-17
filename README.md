@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+# Гостевая книга
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Проект "Гостевая книга" состоит из двух частей: серверной и клиентской.
 
-## Available Scripts
+## Серверная часть (backend)
 
-In the project directory, you can run:
+Серверная часть реализована с использованием следующих технологий:
 
-### `npm start`
+1. **Node.js** - платформа для выполнения JavaScript на сервере.
+2. **Express** - минималистичный веб-фреймворк для Node.js, используемый для создания API.
+3. **Prisma** - ORM (Object-Relational Mapping) для работы с базой данных, в данном случае MySQL.
+4. **dotenv** - библиотека для работы с переменными окружения.
+5. **cors** - библиотека для предоставления промежуточного программного обеспечения для обработки CORS (Cross-Origin Resource Sharing) на сервере.
+6. **express-validator** - промежуточное ПО для валидации и очистки полей запроса.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Клиентская часть (frontend)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Клиентская часть создана с использованием следующих технологий:
 
-### `npm test`
+1. **React** - популярная библиотека JavaScript для создания пользовательских интерфейсов.
+2. **React Scripts** - инструмент для создания, разработки и сборки React-приложений без необходимости настройки Webpack и Babel.
+3. **Material-UI** - набор компонентов пользовательского интерфейса, реализованных в соответствии с принципами дизайна Google Material Design.
+4. **date-fns** - набор функций для работы с датами и временем в JavaScript.
+5. **dotenv** - библиотека для работы с переменными окружения на клиенте.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Обзор проекта
 
-### `npm run build`
+В целом, проект "Гостевая книга" представляет собой веб-приложение, в котором пользователи могут оставлять сообщения, видеть их историю и, возможно, взаимодействовать друг с другом. Бэкенд отвечает за обработку запросов от клиента и взаимодействие с базой данных MySQL. Фронтенд предоставляет интерфейс для взаимодействия пользователей с гостевой книгой и обмена данными с сервером.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Затраченное время ~30 часов
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Описание функционала приложения
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Данное приложение представляет собой гостевую книгу, позволяющую пользователям отправлять сообщения и просматривать их историю. Вот основные компоненты и их функционал:
 
-### `npm run eject`
+1. **MessageForm**: Отвечает за форму отправки сообщений. Здесь пользователь может ввести свое имя и текст сообщения. Форма проверяет вводимые данные на наличие гиперссылок и корректность имени, а затем отправляет сообщение на сервер.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. **MessageItem**: Компонент, представляющий отдельное сообщение в списке сообщений. Отображает имя автора, дату и время отправки, а также текст сообщения с сохранением переносов строк.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **MessageList**: Основной компонент приложения, который управляет списком сообщений. Загружает сообщения с сервера, отображает их с помощью компонента MessageItem и позволяет отправлять новые сообщения через компонент MessageForm.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. **Notification**: Компонент для отображения уведомлений об ошибках или успешной отправке сообщений.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+5. **ValidationForm**: Вспомогательный модуль, содержащий функции для проверки валидности имени пользователя и наличия гиперссылок в тексте.
 
-## Learn More
+Основные возможности приложения:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Отправка сообщений с именем автора, временем создания и текстом сообщения.
+- Валидация имени автора (только латинские символы, цифры и подчеркивания разрешены).
+- Запрет на ввод гиперссылок в поля формы.
+- Отображение списка всех сообщений с сохранением переносов строк.
+- Уведомления об ошибках или успешной отправке сообщений.
+- Загрузка и отображение истории сообщений с сервера.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Инструкция по сборке
 
-### Analyzing the Bundle Size
+Данная инструкция написана для развертывания проекта на бесплатных сервисах по предоставлению хостинга.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Серверная часть (backend)
 
-### Making a Progressive Web App
+1. Выполнить авторизацию в сервисе [Railway](https://railway.app/).
+2. Добавить проект с базой данных mySql на dashboard сервиса.
+3. Копировать ссылку подключения к базе данных и разместить ее в локальном файле `.env` (в локально запущенном проекте).
+4. После успешного подключения выполнить миграцию с помощью команды `npx prisma migrate dev --name init --preview-feature`.
+5. Добавить проект с репозиторием backend на dashboard сервиса.
+6. В Environment variables проекта backend установить ссылку на подключение базы данных с dashboard railway.
+7. Генерировать домен подключения к серверу (settings проекта).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Клиентская часть (frontend)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Выполнить авторизацию в сервисе [Vercel](https://vercel.com/).
+2. Добавить проект с репозиторием frontend на dashboard сервиса.
+3. В Environment variables проекта frontend указать ссылку для подключения к серверу (п.7 backend).
+4. Перейти по сгенерированной ссылке сервисом [Vercel](https://vercel.com/).
